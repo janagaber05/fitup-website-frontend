@@ -1,0 +1,1010 @@
+/* ── App Experience Page ─────────────────────────────── */
+.axp-page {
+  min-height: 100vh;
+  background: #1e1e1e;
+  color: #eef2f8;
+  font-family: Inter, sans-serif;
+}
+
+.axp-wrap {
+  width: min(1080px, 92%);
+  margin: 0 auto;
+  padding: 0 0 48px;
+}
+
+/* ── Hero — full-bleed ───────────────────────────────── */
+.axp-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 0;
+  align-items: start;
+  width: 100%;
+  padding: 0;
+}
+
+/* Left image card — flush left, rounded only on bottom-right */
+.axp-hero-imgcard {
+  position: relative;
+  overflow: hidden;
+  min-height: 460px;
+  border-radius: 0 0 24px 0;
+  /* REPLACE: put your hero background image in src/assets/ and update this url */
+  background: url("../assets/safety.jpg") center/cover no-repeat;
+}
+
+.axp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.45) 0%, rgba(10, 10, 10, 0.2) 40%, rgba(10, 10, 10, 0.5) 100%),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.05) 0%, rgba(10, 10, 10, 0.6) 100%);
+  z-index: 1;
+}
+
+/* Text floats on top of the entire hero */
+.axp-hero-text {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 20%;
+  right: 0;
+  padding: 48px 40px 0;
+  text-align: center;
+}
+
+.axp-hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.axp-hero-accent {
+  color: #ff6b46;
+}
+
+.axp-hero-sub {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.axp-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 90, 42, 0.5);
+  border-radius: 999px;
+  padding: 16px 56px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.04);
+}
+
+/* Right phone mockup area */
+.axp-hero-phone {
+  padding: 180px 28px 28px 16px;
+  min-height: 520px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* REPLACE: add your phone mockup image via background-image on this element */
+.axp-hero-phone-inner {
+  width: 100%;
+  max-width: 230px;
+  height: 500px;
+  margin-left: 100px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 90, 42, 0.45);
+  background: linear-gradient(180deg, #2c2220 0%, #231c1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 24px;
+}
+
+.axp-phone-bar {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.axp-hero-phone-inner .axp-phone-bar:last-of-type {
+  margin-top: auto;
+}
+
+.axp-phone-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Feature Grid ────────────────────────────────────── */
+.axp-features {
+  padding: 0 0 36px;
+  margin-top: -240px;
+  position: relative;
+  z-index: 5;
+}
+
+.axp-features-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.axp-features-top .axp-fcard {
+  grid-column: 1;
+}
+
+.axp-fcard-phone {
+  border-radius: 24px;
+  border: 1.5px solid rgba(255, 90, 42, 0.35);
+  background: linear-gradient(180deg, #2c2220 0%, #231c1a 100%);
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 280px;
+}
+
+.axp-fcard-phone-bar {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.axp-fcard-phone-screen {
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.axp-features-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.axp-fcard {
+  background: linear-gradient(160deg, #2a2d35 0%, #21242c 100%);
+  border: 1px solid #353a45;
+  border-radius: 24px;
+  padding: 24px 22px 22px;
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.axp-fcard-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 70, 0.4);
+  background: rgba(255, 90, 42, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.axp-fcard h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.axp-fcard p {
+  margin: 0;
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+.axp-fcard-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: #ff8f73;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.axp-fcard-link::after {
+  content: "  ->";
+}
+
+/* ── Track Progress ──────────────────────────────────── */
+.axp-progress {
+  padding: 48px 0 32px;
+}
+
+.axp-progress h2 {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.axp-progress-sub {
+  margin: 0 auto 36px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.axp-progress-layout {
+  display: grid;
+  grid-template-columns: auto max-content max-content;
+  gap: 25px;
+  justify-content: center;
+  align-items: start;
+}
+
+.axp-progress-col {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.axp-prog-card {
+  background: linear-gradient(160deg, #2a2d35 0%, #21242c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 0;
+  max-width: 160px;
+  height: 100px;
+}
+
+.axp-prog-card span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #d0d6e0;
+  line-height: 1.4;
+}
+
+.axp-prog-card--filled {
+  background: rgba(249, 104, 75, 0.78);
+  border-color: rgba(249, 104, 75, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 24px rgba(249, 104, 75, 0.18);
+}
+
+.axp-prog-card--filled span {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.axp-progress-quote {
+  margin: 36px auto 12px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.axp-progress-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff5a2a, transparent);
+  margin: 0 auto;
+  transform-origin: left center;
+}
+
+/* Phone mockup */
+.axp-pmock {
+  width: 240px;
+  height: 430px;
+  border-radius: 28px;
+  border: 2px solid rgba(100, 120, 180, 0.3);
+  background: linear-gradient(180deg, #1a1d24 0%, #14161c 100%);
+  padding: 16px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.axp-pmock-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #d0d6e0;
+  font-size: 13px;
+}
+
+.axp-pmock-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b46, #e04a2a);
+}
+
+.axp-pmock-activity {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.axp-pmock-label {
+  font-size: 10px;
+  color: #7a8494;
+  letter-spacing: 0.05em;
+}
+
+.axp-pmock-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 4px 0 8px;
+}
+
+.axp-pmock-pct {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.axp-pmock-change {
+  font-size: 12px;
+  color: #ff6b46;
+  font-weight: 600;
+}
+
+.axp-pmock-bar {
+  height: 5px;
+  border-radius: 999px;
+  background: #2a2e38;
+}
+
+.axp-pmock-bar-fill {
+  width: 84%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff5a2a, #ff4020);
+}
+
+.axp-pmock-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.axp-pmock-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: 14px;
+  background: rgba(255, 90, 42, 0.08);
+  border: 1px solid rgba(255, 90, 42, 0.2);
+  font-size: 11px;
+  color: #d0d6e0;
+}
+
+.axp-pmock-action--blue {
+  background: rgba(91, 141, 239, 0.08);
+  border-color: rgba(91, 141, 239, 0.2);
+}
+
+.axp-pmock-class {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.axp-pmock-class-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.axp-pmock-time {
+  color: #ff6b46;
+  font-weight: 600;
+}
+
+.axp-pmock-class-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.axp-pmock-class-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #556b8a, #3d5070);
+}
+
+.axp-pmock-class-row strong {
+  display: block;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.axp-pmock-coach {
+  font-size: 11px;
+  color: #7a8494;
+}
+
+.axp-pmock-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  flex-shrink: 0;
+  padding: 10px 0 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.axp-pmock-navIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 90, 42, 0.55);
+  background: rgba(10, 10, 10, 0.25);
+  color: #ff6b46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 18px rgba(255, 90, 42, 0.06);
+}
+
+.axp-pmock-navIcon--active {
+  background: #ff6b46;
+  border-color: rgba(255, 90, 42, 0.95);
+  color: #ffffff;
+  box-shadow:
+    inset 0 0 16px rgba(255, 255, 255, 0.14),
+    0 0 0 6px rgba(255, 90, 42, 0.12),
+    0 18px 40px rgba(255, 90, 42, 0.18);
+}
+
+/* ── Booking ─────────────────────────────────────────── */
+.axp-booking {
+  padding: 48px 0 36px;
+}
+
+.axp-booking h2 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.axp-booking-sub {
+  margin: 0 auto 32px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.axp-booking-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.axp-book-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.axp-book-glow {
+  height: 170px;
+  min-height: 0;
+  border-radius: 22px;
+  border: 1.5px solid rgba(255, 90, 42, 0.62);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 45%, rgba(255, 90, 42, 0.20) 0%, rgba(26, 29, 36, 0.55) 65%),
+    linear-gradient(160deg, rgba(37, 40, 48, 0.7) 0%, rgba(26, 29, 36, 0.85) 100%);
+  box-shadow:
+    inset 0 0 60px rgba(255, 90, 42, 0.10),
+    0 0 0 1px rgba(255, 90, 42, 0.10),
+    0 16px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.axp-book-glow svg {
+  filter: drop-shadow(0 0 16px rgba(255, 90, 42, 0.25));
+}
+
+.axp-book-card {
+  background: linear-gradient(160deg, #2a2d35 0%, #21242c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 24px 24px;
+}
+
+.axp-book-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.axp-book-card-desc {
+  margin: 0 0 16px;
+  color: #9ca3af;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.axp-book-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.axp-book-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #d3dae5;
+}
+
+.axp-book-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(255, 90, 42, 0.12);
+  border: 1px solid rgba(255, 90, 42, 0.35);
+  color: #ff6b46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.axp-flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.axp-flow-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.axp-flow-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5a2a 0%, #ff7a52 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.axp-flow-step strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 2px;
+  color: #ffffff;
+}
+
+.axp-flow-step p {
+  margin: 0;
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+/* ── Coach Communication ─────────────────────────────── */
+.axp-coach {
+  padding: 48px 0 36px;
+}
+
+.axp-coach h2 {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.axp-coach-sub {
+  margin: 0 auto 28px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+  max-width: 740px;
+}
+
+.axp-coach-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.axp-coach-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.axp-coach-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 107, 70, 0.9);
+}
+
+.axp-coach-card-box {
+  width: 100%;
+  max-width: 220px;
+  min-height: 112px;
+  border-radius: 0 0 24px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(160deg, #2a2d35 0%, #21242c 100%);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  padding: 12px 12px;
+}
+
+.axp-coach-num {
+  color: rgba(255, 107, 70, 0.45);
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.axp-coach-card-box p {
+  margin: 0;
+  color: #f1f3f7;
+  font-size: 14px;
+  line-height: 1.18;
+  font-weight: 700;
+}
+
+.axp-coach-foot {
+  margin: 24px 0 0;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* ── AR Section ──────────────────────────────────────── */
+.axp-ar {
+  padding: 36px 0;
+}
+
+.axp-ar-inner {
+  border-radius: 30px;
+  border: 1px solid rgba(255, 90, 42, 0.18);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255, 90, 42, 0.24) 0%, rgba(255, 90, 42, 0.08) 35%, rgba(32, 35, 43, 0.92) 72%),
+    linear-gradient(160deg, #292d36 0%, #1f2229 100%);
+  padding: 34px 26px 42px;
+  text-align: center;
+}
+
+.axp-ar-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.axp-ar h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.axp-ar p {
+  margin: 0 auto 22px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 760px;
+}
+
+.axp-ar-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.axp-ar-btn {
+  border-radius: 999px;
+  padding: 13px 40px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.axp-ar-btn--primary {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(130deg, #ff5a2a 0%, #ff7a52 100%);
+}
+
+.axp-ar-btn--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ── Complete Journey (How It Works timeline-style) ── */
+.axp-journey {
+  position: relative;
+  margin-top: 10px;
+  padding: 30px 0 42px;
+  display: grid;
+  gap: 22px;
+}
+
+.axp-journey h2 {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.axp-journey-subtitle {
+  margin: -8px auto 10px;
+  text-align: center;
+  color: #8f98a7;
+  font-size: 14px;
+  max-width: 620px;
+}
+
+.axp-journey-line {
+  position: absolute;
+  top: 112px;
+  bottom: 30px;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 90, 42, 0.95), rgba(255, 90, 42, 0.18));
+}
+
+.axp-journey-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+  z-index: 1;
+}
+
+.axp-journey-col {
+  display: flex;
+  align-items: center;
+}
+
+.axp-journey-col--left {
+  justify-content: flex-start;
+}
+
+.axp-journey-col--right {
+  justify-content: flex-end;
+}
+
+.axp-journey-badge {
+  width: 98px;
+  height: 98px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 107, 70, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 0 6px rgba(255, 90, 42, 0.10),
+    0 0 26px rgba(255, 90, 42, 0.35);
+}
+
+.axp-journey-card {
+  background: linear-gradient(160deg, #2a2d35 0%, #21242c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
+  padding: 20px 22px;
+  width: 390px;
+  min-height: 190px;
+}
+
+.axp-journey-card h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.axp-journey-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.axp-journey-list li {
+  color: #e1e5ec;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Keep journey layout consistent with smaller widths */
+@media (max-width: 900px) {
+  .axp-journey-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .axp-journey-col--left,
+  .axp-journey-col--right {
+    justify-content: flex-start;
+  }
+
+  .axp-journey-line {
+    left: 19px;
+    transform: none;
+  }
+}
+
+/* REPLACE: swap this placeholder for a real AR phone mockup */
+.axp-phone-mock--ar {
+  width: 180px;
+  height: 360px;
+  border-radius: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .axp-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .axp-hero-imgcard {
+    min-height: 360px;
+    border-radius: 0 0 20px 0;
+  }
+
+  .axp-hero-text {
+    padding: 32px 20px 0;
+  }
+
+  .axp-hero-phone {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .axp-hero-phone-inner {
+    height: 320px;
+  }
+
+  .axp-features-top {
+    grid-template-columns: 1fr;
+  }
+
+  .axp-progress-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .axp-progress-phone {
+    display: flex;
+    justify-content: center;
+  }
+
+  .axp-pmock {
+    width: 220px;
+  }
+
+  .axp-ar-inner {
+    padding: 32px 24px;
+  }
+
+  .axp-book-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .axp-book-glow {
+    min-height: 160px;
+  }
+
+  .axp-coach-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .axp-features-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .axp-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .axp-hero-imgcard {
+    min-height: 300px;
+  }
+
+  .axp-coach-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .axp-ar-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .axp-ar-btn {
+    width: min(320px, 92%);
+    font-size: 15px;
+  }
+}

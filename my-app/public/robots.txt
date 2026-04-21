@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+# Update the Sitemap URL to your production origin (same as in public/sitemap.xml).
+User-agent: *
+Disallow:
+
+Sitemap: https://fitup.com/sitemap.xml

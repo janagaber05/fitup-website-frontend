@@ -1,0 +1,77 @@
+.fitup-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 90, 42, 0.14) 0%, rgba(255, 90, 42, 0.02) 32%, transparent 58%),
+    #1e1e1e;
+}
+
+.fitup-preloader-brand {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.fitup-preloader-logo {
+  display: block;
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 0 14px rgba(255, 90, 42, 0.22));
+}
+
+.fitup-preloader-wordmark {
+  font-size: 12px;
+  letter-spacing: 0.34em;
+  font-weight: 700;
+  color: #ff9a80;
+  margin-right: -0.34em;
+}
+
+.fitup-preloader-progress {
+  width: min(280px, 68vw);
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+
+.fitup-preloader-progress-fill {
+  display: block;
+  height: 100%;
+  width: 42%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff5a2a, #ff8e71);
+  animation: fitup-preloader-sweep 1.35s ease-in-out infinite;
+}
+
+.fitup-preloader-text {
+  margin: 0;
+  color: #b7bfcd;
+  font-size: 13px;
+}
+
+@keyframes fitup-preloader-sweep {
+  0% {
+    transform: translateX(-130%);
+  }
+  60% {
+    transform: translateX(175%);
+  }
+  100% {
+    transform: translateX(175%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fitup-preloader-progress-fill {
+    animation: none;
+    width: 100%;
+  }
+}

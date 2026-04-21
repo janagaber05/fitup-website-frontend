@@ -1,0 +1,423 @@
+/* One horizontal row: equal gap between logo, profile, every link, spacer, and CTA */
+.fitup-nav {
+  --fitup-nav-gap: clamp(16px, 1.85vw, 22px);
+  /* Keep layout identical when page is RTL (Arabic); only main content mirrors */
+  direction: ltr;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--fitup-nav-gap);
+  width: 100%;
+  padding: 16px max(16px, 3vw) 16px max(20px, 3.5vw);
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgba(30, 30, 30, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.fitup-nav.fitup-wrap {
+  width: 100%;
+  margin: 0;
+}
+
+/* Flatten link rows so every control is a direct flex sibling → same gap everywhere.
+   Keep .fitup-nav-left as a real flex box (not display:contents) so the brand image
+   paints reliably across browsers. */
+.fitup-nav-left {
+  display: flex;
+  align-items: center;
+  gap: var(--fitup-nav-gap);
+  flex-shrink: 0;
+}
+
+.fitup-nav-right,
+.fitup-links {
+  display: contents;
+}
+
+.fitup-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  line-height: 0;
+}
+
+.fitup-nav-brand-img {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 160px;
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: left center;
+  /* Keeps the orange mark readable on bright/hero backgrounds (e.g. Platform video) */
+  filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.75))
+    drop-shadow(0 0 6px rgba(0, 0, 0, 0.35));
+}
+
+.fitup-links a {
+  color: #a8b0c0;
+  text-decoration: none;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fitup-links a:hover {
+  color: #e8ecf4;
+}
+
+.fitup-links a.is-active {
+  color: #f4f7ff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+/* Grows so the CTA stays on the right; gap before/after this equals --fitup-nav-gap */
+.fitup-nav-spacer {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 1px;
+  align-self: stretch;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.fitup-nav-lang {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px;
+  gap: 2px;
+}
+
+.fitup-nav-lang-btn {
+  border: 0;
+  background: transparent;
+  color: #a8b0c0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.fitup-nav-lang-btn:hover {
+  color: #e8ecf4;
+}
+
+.fitup-nav-lang-btn.is-active {
+  background: rgba(255, 90, 42, 0.22);
+  color: #fff;
+}
+
+.fitup-nav .fitup-btn {
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fitup-nav-profile {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8ecf4;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.fitup-nav-profile:hover {
+  background: rgba(255, 107, 70, 0.15);
+  border-color: rgba(255, 107, 70, 0.45);
+  color: #fff;
+}
+
+.fitup-nav-burger {
+  display: none;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8ecf4;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.fitup-nav-burger:hover {
+  background: rgba(255, 107, 70, 0.12);
+  border-color: rgba(255, 107, 70, 0.35);
+}
+
+.fitup-nav-burger-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fitup-nav-burger-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 22px;
+}
+
+.fitup-nav-burger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.fitup-nav-burger-line.is-open:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.fitup-nav-burger-line.is-open:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.fitup-nav-burger-line.is-open:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.fitup-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 88;
+  background: rgba(6, 8, 12, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.fitup-nav-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.fitup-nav-drawer {
+  position: fixed;
+  top: 0;
+  z-index: 90;
+  width: min(320px, 88vw);
+  height: 100dvh;
+  max-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 24px;
+  background: linear-gradient(165deg, #252830 0%, #1a1d24 55%, #15171d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -16px 0 40px rgba(0, 0, 0, 0.45);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.32s ease;
+}
+
+html:not([dir="rtl"]) .fitup-nav-drawer {
+  right: 0;
+  transform: translateX(100%);
+  visibility: hidden;
+}
+
+html:not([dir="rtl"]) .fitup-nav-drawer.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+html[dir="rtl"] .fitup-nav-drawer {
+  left: 0;
+  right: auto;
+  transform: translateX(-100%);
+  box-shadow: 16px 0 40px rgba(0, 0, 0, 0.45);
+  visibility: hidden;
+}
+
+html[dir="rtl"] .fitup-nav-drawer.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.fitup-nav-drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fitup-nav-drawer-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e8ecf4;
+}
+
+.fitup-nav-drawer-close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8ecf4;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.fitup-nav-drawer-close:hover {
+  background: rgba(255, 90, 42, 0.2);
+}
+
+.fitup-nav-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.fitup-nav-drawer-links a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #c5cdd8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.fitup-nav-drawer-links a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.fitup-nav-drawer-links a.is-active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.fitup-nav-drawer-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fitup-nav-drawer-lang {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px;
+  gap: 2px;
+}
+
+.fitup-nav-drawer-partner {
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fitup-nav-burger-line,
+  .fitup-nav-backdrop,
+  .fitup-nav-drawer {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 680px) {
+  .fitup-nav {
+    --fitup-nav-gap: 12px;
+    justify-content: space-between;
+    padding: 14px 16px;
+  }
+
+  .fitup-nav-lang-btn {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .fitup-nav-left {
+    gap: 10px;
+  }
+
+  .fitup-nav-brand-img {
+    height: 38px;
+    max-width: 140px;
+  }
+
+  .fitup-nav-lang {
+    display: none;
+  }
+
+  .fitup-nav-right {
+    display: none;
+  }
+
+  .fitup-nav-burger {
+    display: grid;
+  }
+
+  .fitup-links {
+    display: none;
+  }
+
+  .fitup-nav-spacer {
+    display: none;
+  }
+
+  .fitup-nav-profile {
+    width: 38px;
+    height: 38px;
+  }
+}
