@@ -1,0 +1,10 @@
+{
+  "name": "fitup-website-frontend",
+  "private": true,
+  "description": "Root meta-package for Vercel; app lives in my-app/",
+  "scripts": {
+    "start": "npm run start --prefix my-app",
+    "build": "npm run build --prefix my-app",
+    "test": "npm run test --prefix my-app"
+  }
+}
