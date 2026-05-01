@@ -51,8 +51,12 @@ function FitupFooter() {
               <li><Link to="/partner">{t("nav.partnerCta")}</Link></li>
               <li><Link to="/about">{t("nav.about")}</Link></li>
               <li><Link to="/contact">{t("nav.contact")}</Link></li>
+              <li><Link to="/privacy-policy">{t("footer.privacyPolicy")}</Link></li>
             </ul>
-            <p className="site-footer-terms">{t("footer.terms")}</p>
+            <p className="site-footer-terms">
+              <span>{t("footer.terms")}</span>
+              <Link to="/privacy-policy">{t("footer.privacyPolicy")}</Link>
+            </p>
           </div>
 
           <div className="site-footer-right">

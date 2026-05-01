@@ -1,0 +1,46 @@
+.fitup-crs {
+  margin: 24px auto 40px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(20, 22, 28, 0.65);
+  max-width: 720px;
+}
+
+.fitup-crs-muted {
+  margin: 0;
+  font-size: 13px;
+  color: #8b94a3;
+}
+
+.fitup-crs-error {
+  margin: 0;
+  font-size: 13px;
+  color: #ffb4a8;
+}
+
+.fitup-crs-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #e8ecf4;
+  font-size: 13px;
+}
+
+.fitup-crs-item {
+  margin-bottom: 8px;
+}
+
+.fitup-crs-slug {
+  display: block;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: #a8b0c0;
+  margin-bottom: 2px;
+}
+
+.fitup-crs-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}

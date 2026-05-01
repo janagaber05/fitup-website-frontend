@@ -1,0 +1,212 @@
+================================================================================
+FITUP WEBSITE — FULL SCHEMA (REFERENCE)
+================================================================================
+This is the full data schema for the current FITUP website + Supabase setup.
+It is a human-readable schema reference (not executable SQL).
+
+------------------------------------------------------------------------------
+1) SCHEMAS USED
+------------------------------------------------------------------------------
+- public        -> app tables
+- auth          -> Supabase Authentication tables (managed by Supabase)
+
+------------------------------------------------------------------------------
+2) IDENTITY MODEL
+------------------------------------------------------------------------------
+- Authentication identity lives in: auth.users
+- App profile lives in: public.profiles
+- Relationship: public.profiles.id = auth.users.id
+- Rule: never create public.users
+
+------------------------------------------------------------------------------
+3) TABLES
+------------------------------------------------------------------------------
+
+3.1) auth.users (Supabase-managed)
+Purpose:
+- One row per authenticated account.
+
+Columns (important app-facing fields):
+- id uuid (primary key, managed by Supabase)
+- email text
+- raw_user_meta_data jsonb
+- created_at timestamptz
+
+Notes:
+- Managed by Supabase; do not redesign from app SQL migrations.
+
+
+3.2) public.profiles
+Purpose:
+- One row per user profile in the app.
+
+Columns:
+- id uuid primary key references auth.users(id) on delete cascade
+- display_name text
+- phone text
+- locale text default 'en'
+- app_role text not null default 'member'
+  check (app_role in ('member','staff','coach','owner','admin'))
+- avatar_url text
+- created_at timestamptz not null default now()
+- updated_at timestamptz not null default now()
+
+Relationships:
+- profiles.id -> auth.users.id (1:1)
+
+Triggers / Functions:
+- public.set_updated_at() trigger function
+- trigger set_profiles_updated_at before update on public.profiles
+- public.handle_new_user() trigger function
+- trigger on_auth_user_created after insert on auth.users
+  inserts default profile row for new users
+
+RLS:
+- enabled
+- policy profiles_select_own (authenticated select own row)
+- policy profiles_update_own (authenticated update own row)
+- policy profiles_insert_own (authenticated insert own row)
+
+Grants:
+- grant usage on schema public to anon, authenticated
+- grant select, insert, update on public.profiles to authenticated
+
+
+3.3) public.form_submissions
+Purpose:
+- Shared table for website forms:
+  - /contact
+  - /partner
+  - /join-us
+  - optional / or /landing form
+
+Columns:
+- id uuid primary key default gen_random_uuid()
+- page_slug text not null
+  check (page_slug in ('contact','partner','join-us','home'))
+- name text not null
+- email text not null
+- message text
+- gym_name text
+- company_name text
+- phone text
+- meta jsonb not null default '{}'::jsonb
+- status text not null default 'new'
+  check (status in ('new','reviewed','archived'))
+- created_at timestamptz not null default now()
+
+Indexes:
+- idx_form_submissions_page_slug on (page_slug)
+- idx_form_submissions_created_at_desc on (created_at desc)
+- idx_form_submissions_email on (email)
+
+RLS:
+- enabled
+- policy form_submissions_insert_public
+  (anon + authenticated can insert)
+- policy form_submissions_select_none_anon
+  (anon cannot read)
+- policy form_submissions_select_authenticated
+  (authenticated can read)
+
+Grants:
+- grant insert on public.form_submissions to anon, authenticated
+- grant select on public.form_submissions to authenticated
+
+
+3.4) public.gyms
+Purpose:
+- Directory/listing table for platform discoverability page.
+
+Columns:
+- id uuid primary key default gen_random_uuid()
+- name text not null
+- slug text not null unique
+- city text
+- country text
+- timezone text default 'Asia/Riyadh'
+- description text
+- status text not null default 'active'
+  check (status in ('active','inactive','pending'))
+- created_at timestamptz not null default now()
+- updated_at timestamptz not null default now()
+
+Triggers:
+- trigger set_gyms_updated_at before update on public.gyms
+  uses public.set_updated_at()
+
+RLS:
+- enabled
+- policy gyms_select_active_public
+  (anon + authenticated can read status='active')
+- policy gyms_mutation_authenticated
+  (authenticated can insert/update/delete)
+
+Grants:
+- grant select on public.gyms to anon, authenticated
+- grant insert, update, delete on public.gyms to authenticated
+
+------------------------------------------------------------------------------
+4) PAGE -> DATA MAPPING
+------------------------------------------------------------------------------
+- /profile                -> auth.users + public.profiles
+- /contact                -> public.form_submissions (page_slug='contact')
+- /partner                -> public.form_submissions (page_slug='partner')
+- /join-us                -> public.form_submissions (page_slug='join-us')
+- /platform               -> public.gyms
+- / and /landing          -> no required DB table currently
+                             (optional form uses page_slug='home')
+- /about                  -> static content (no DB table)
+- /security               -> static content (no DB table)
+- /how-it-works           -> static content (no DB table)
+- /for-gyms               -> static content (no DB table)
+- /app-experience         -> static content (no DB table)
+- /feature/:featureId     -> static/i18n content (no DB table)
+- /solution/:cardId       -> static/i18n content (no DB table)
+
+------------------------------------------------------------------------------
+5) SAMPLE ROW SHAPES
+------------------------------------------------------------------------------
+public.profiles row:
+- id: <auth_user_uuid>
+- display_name: "Demo User"
+- phone: "+966500000000"
+- locale: "en"
+- app_role: "member"
+- avatar_url: null
+
+public.form_submissions row:
+- page_slug: "contact"
+- name: "Sara Ali"
+- email: "sara@example.com"
+- message: "I want to know your gym pricing."
+- company_name: null
+- gym_name: null
+- phone: null
+- meta: {}
+- status: "new"
+
+public.gyms row:
+- name: "Iron House Gym"
+- slug: "iron-house-gym"
+- city: "Riyadh"
+- country: "Saudi Arabia"
+- timezone: "Asia/Riyadh"
+- description: "Strength and conditioning gym."
+- status: "active"
+
+------------------------------------------------------------------------------
+6) IMPLEMENTATION FILES IN THIS REPO
+------------------------------------------------------------------------------
+- schema + seed SQL:
+  my-app/supabase/prompts/manual_upload__schema_and_seed.sql
+
+- column mapping:
+  my-app/supabase/prompts/tables__columns.txt
+
+- row mapping:
+  my-app/supabase/prompts/tables__rows.txt
+
+------------------------------------------------------------------------------
+END
+------------------------------------------------------------------------------

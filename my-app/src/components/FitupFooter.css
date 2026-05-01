@@ -114,7 +114,18 @@
   margin: 0;
   color: #6b7280;
   font-size: 12px;
-  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.site-footer-terms a {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.site-footer-terms a:hover {
+  color: #ff7a56;
 }
 
 /* Right */

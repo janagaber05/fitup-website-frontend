@@ -13,6 +13,7 @@ import AboutPage from "./pages/AboutPage";
 import PartnerPage from "./pages/PartnerPage";
 import ProfilePage from "./pages/ProfilePage";
 import SolutionDetailPage from "./pages/SolutionDetailPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "solution/:cardId",
         element: <SolutionDetailPage />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicyPage />,
       },
     ],
   },
