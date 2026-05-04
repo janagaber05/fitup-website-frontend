@@ -225,19 +225,6 @@
   max-width: 260px;
 }
 
-.axp-fcard-link {
-  display: inline-block;
-  margin-top: 14px;
-  color: #ff8f73;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.axp-fcard-link::after {
-  content: "  ->";
-}
-
 /* ── Track Progress ──────────────────────────────────── */
 .axp-progress {
   padding: 48px 0 32px;

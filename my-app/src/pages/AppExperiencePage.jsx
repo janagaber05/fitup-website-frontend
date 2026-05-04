@@ -7,7 +7,6 @@ function AppExperiencePage() {
   const { t } = useI18n();
   const reduceMotion = useReducedMotion();
   const r = Boolean(reduceMotion);
-  const learnMore = t("common.learnMore");
 
   const features = useMemo(
     () => [
@@ -231,13 +230,6 @@ function AppExperiencePage() {
               </motion.div>
               <h3>{features[0].title}</h3>
               <p>{features[0].desc}</p>
-              <motion.span
-                className="axp-fcard-link"
-                whileHover={r ? undefined : { x: 4, color: "#ff8a6a" }}
-                transition={{ duration: 0.2 }}
-              >
-                {learnMore}
-              </motion.span>
             </motion.article>
           </div>
           <motion.div
@@ -263,13 +255,6 @@ function AppExperiencePage() {
                 </motion.div>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
-                <motion.span
-                  className="axp-fcard-link"
-                  whileHover={r ? undefined : { x: 4, color: "#ff8a6a" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {learnMore}
-                </motion.span>
               </motion.article>
             ))}
           </motion.div>

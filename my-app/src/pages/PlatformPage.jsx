@@ -17,15 +17,6 @@ const gymCatalog = [
   { id: 6, name: "Athlete Hub", location: "New Cairo", price: "Budget", ladiesOnly: false },
 ];
 
-const featureTiles = [
-  { id: 1, className: "platform-tile--1", bgImage: "" },
-  { id: 2, className: "platform-tile--2", bgImage: "" },
-  { id: 3, className: "platform-tile--3", bgImage: "" },
-  { id: 4, className: "platform-tile--4", bgImage: "" },
-  { id: 5, className: "platform-tile--5", bgImage: "" },
-  { id: 6, className: "platform-tile--6", bgImage: "" },
-];
-
 const recommendedCards = [
   { id: 1, thumbImage: recThumbCoach },
   { id: 2, thumbImage: recThumbCoachInsights },
@@ -102,29 +93,6 @@ function PlatformPage() {
     };
   }, []);
 
-  const tilesSectionVariants = {
-    hidden: { opacity: r ? 1 : 0, y: r ? 0 : 28 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: r ? 0 : 0.55,
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: r ? 0 : 0.07,
-        delayChildren: r ? 0 : 0.06,
-      },
-    },
-  };
-
-  const tileItemVariants = {
-    hidden: { opacity: r ? 1 : 0, y: r ? 0 : 18 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: r ? 0 : 0.4, ease: "easeOut" },
-    },
-  };
-
   const scrollSection = {
     initial: { opacity: r ? 1 : 0, y: r ? 0 : 28 },
     whileInView: { opacity: 1, y: 0 },
@@ -184,13 +152,16 @@ function PlatformPage() {
                 ease: "easeOut",
               }}
             >
-            <button
-              type="button"
-              className={`platform-ladies-only ${ladiesOnly ? "is-active" : ""}`}
-              onClick={() => setLadiesOnly((prev) => !prev)}
-            >
-              {ladiesOnly ? t("platform.ladiesOn") : t("platform.ladiesOff")}
-            </button>
+            <div className="platform-filter-toolbar">
+              <button
+                type="button"
+                className={`platform-ladies-only ${ladiesOnly ? "is-active" : ""}`}
+                onClick={() => setLadiesOnly((prev) => !prev)}
+                aria-pressed={ladiesOnly}
+              >
+                {ladiesOnly ? t("platform.ladiesOn") : t("platform.ladiesOff")}
+              </button>
+            </div>
             <div className="platform-filter-shell">
               <label className="platform-filter platform-filter-search" htmlFor="platform-gym-search">
                 <span aria-hidden="true">🔍</span>
@@ -251,30 +222,6 @@ function PlatformPage() {
             </motion.section>
           </div>
         </section>
-
-        <motion.section
-          className="platform-tiles"
-          variants={tilesSectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-10% 0px" }}
-        >
-          {featureTiles.map((tile) => (
-            <motion.article
-              key={tile.id}
-              className={`platform-tile ${tile.className}`}
-              style={tile.bgImage ? { "--tile-bg-image": `url(${tile.bgImage})` } : undefined}
-              variants={tileItemVariants}
-              whileHover={
-                r
-                  ? undefined
-                  : { y: -4, transition: { duration: 0.22, ease: "easeOut" } }
-              }
-            >
-              {t(`platform.tile${tile.id}`)}
-            </motion.article>
-          ))}
-        </motion.section>
 
         <motion.section className="platform-results" {...scrollSection}>
           <motion.h2

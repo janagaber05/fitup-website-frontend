@@ -197,9 +197,6 @@ function FitupLanding() {
 
                 <h3 className="fitup-why-title">{card.title}</h3>
                 <p className="fitup-why-desc">{card.description}</p>
-                <Link to={`/solution/${card.id}`} className="fitup-why-link">
-                  {t("landing.learnMore")}
-                </Link>
               </article>
             ))}
           </div>
